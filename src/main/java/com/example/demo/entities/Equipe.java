@@ -24,6 +24,8 @@ public class Equipe {
 	@OneToMany(mappedBy = "id_equipe")
 	private List<Operador> id_operador;
 	
+	@OneToMany(mappedBy = "id_equipe")
+	private List<Cadastro> id_cadastro;
 	
 	public Equipe() {
 		

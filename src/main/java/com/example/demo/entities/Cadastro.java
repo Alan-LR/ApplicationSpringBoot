@@ -22,15 +22,29 @@ public class Cadastro {
 	@JoinColumn(name = "id_operador")
 	private Operador id_operador;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_equipe")
+	private Equipe id_equipe;
+	
 	public Cadastro () {
 		
 	}
 
-	public Cadastro(Integer id_cadastro, String nome_cadastro, Operador id_operador) {
+	public Cadastro(Integer id_cadastro, String nome_cadastro, Operador id_operador, Equipe id_equipe) {
 		super();
 		this.id_cadastro = id_cadastro;
 		this.nome_cadastro = nome_cadastro;
 		this.id_operador = id_operador;
+		this.id_equipe = id_equipe;
+	}
+
+	
+	public Equipe getId_equipe() {
+		return id_equipe;
+	}
+
+	public void setId_equipe(Equipe id_equipe) {
+		this.id_equipe = id_equipe;
 	}
 
 	public Integer getId_cadastro() {

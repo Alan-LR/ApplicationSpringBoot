@@ -3,14 +3,19 @@ package com.example.demo.sevices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.util.List;
 import com.example.demo.entities.Cadastro;
 import com.example.demo.entities.Coordenador;
 import com.example.demo.entities.Equipe;
 import com.example.demo.entities.Operador;
 import com.example.demo.repository.CadastroRepository;
+import com.example.demo.repository.RepositoryQueries;
 import com.example.demo.repository.CoordenadorRepository;
 import com.example.demo.repository.EquipeRepository;
 import com.example.demo.repository.OperadorRepository;
+
+
 
 @Service
 public class Services {
@@ -26,6 +31,9 @@ public class Services {
 	
 	@Autowired
 	private CadastroRepository cadRep;
+	
+	@Autowired
+	private RepositoryQueries repositoryQueries;
 
 	public Equipe insertEquip(Equipe obj) {
 		return equipRep.save(obj);
@@ -50,9 +58,27 @@ public class Services {
 	}
 
 	private void updateNewCoord(Coordenador entity, Coordenador obj) {
-		entity.setNome_coordenador(obj.getNome_coordenador());
-		entity.setEmail_coordenador(obj.getEmail_coordenador());
 		entity.setId_equipe(obj.getId_equipe());
 		
 	}
+
+	public void deletarOperador(Integer id_operador) {
+		opRep.deleteById(id_operador);
+		
+	}
+
+	public void deletarEquipe(Integer id_equipe) {
+		equipRep.deleteById(id_equipe);
+		
+	}
+
+	public  List buscarCadastroCoord(String id_equipe) {
+		return repositoryQueries.buscarCadastroCoord(id_equipe);
+	}
+
+	public List cadastrosOPerador(String id_operador) {
+		return repositoryQueries.cadastrosOperador(id_operador);
+	}
+
+	
 }
